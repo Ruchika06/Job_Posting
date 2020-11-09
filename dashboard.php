@@ -1,6 +1,6 @@
-/*
-<?php
 
+<?php
+/*
 //To Handle Session Variables on This Page
 session_start();
 
@@ -12,8 +12,8 @@ if(empty($_SESSION['id_user'])) {
 }
 
 //Including Database Connection From db.php file to avoid rewriting in all files
-require_once("../db.php");
-?>*/
+require_once("../db.php");*/
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
