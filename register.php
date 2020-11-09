@@ -1,15 +1,15 @@
-/*
+
 <?php
 //To Handle Session Variables on This Page
-session_start();
+/*session_start();
 
 //If user is already logged in then redirect them back to dashboard. 
 //This is required if user tries to manually enter register.php in URL.
 if(isset($_SESSION['id_user'])) {
     header("Location: user/dashboard.php");
     exit();
-  }
-?>*/
+  }*/
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
