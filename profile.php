@@ -5,9 +5,9 @@ session_start();
 
 //If user Not logged in then redirect them back to homepage. 
 //This is required if user tries to manually enter profile.php in URL.
-if(empty($_SESSION['id_user'])) {
-  header("Location: ../index.php");
-  exit();
+/*if(empty($_SESSION['id_user'])) {
+  header("Location: index.php");
+  exit();*/
 }
 
 //Including Database Connection From db.php file to avoid rewriting in all files
