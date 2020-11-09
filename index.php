@@ -58,7 +58,7 @@
               <?php }  else { 
               //Show Login Links if no one is logged in.
             ?>
-              <li><a href="company.php">Company</a></li>
+              <li><a href="dashboard.php">All Jobs</a></li>
               <li><a href="register.php">Register</a></li>
               <li><a href="login.php">Login</a></li>
             <?php } ?>
