@@ -1,7 +1,6 @@
 <?php include 'inc/header.php'?>
     <div class="wrapper" style="margin: 0 auto;">
         <h2>Sign Up</h2>
-        <p>Please fill this form to create an account.</p>
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
             <div class="form-group <?php echo (!empty($username_err)) ? 'has-error' : ''; ?>">
                 <label>E-Mail</label>
@@ -25,7 +24,6 @@
             </div>
             <div class="form-group">
                 <input type="submit" class="btn btn-primary" value="Submit">
-                <input type="reset" class="btn btn-default" value="Reset">
             </div>
             <p>Already have an account? <a href="login.php">Login here</a>.</p>
         </form>
