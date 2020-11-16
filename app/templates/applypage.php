@@ -39,12 +39,18 @@ else
 <div class="col-md-6">
       <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
         <div class="col p-4 d-flex flex-column position-static">
-          <strong class="d-inline-block mb-2 text-primary">Post No:<?php echo $post->id; ?></strong>
+          <strong class="d-inline-block mb-2 text-primary">World</strong>
           <h3 class="mb-0"><?php echo $post->title; ?></h3>
           <div class="mb-1 text-muted"><?php echo strftime("%d/%m/%Y",strtotime($post->created_at)); ?></div>
           <p class="card-text mb-auto"><?php echo $post->description; ?><br>Contact: <?php echo $post->contact; ?></p>
           
         </div>
+        <!-- APPlY FORM -->
+			<form action="postview.php" method="POST">
+				
+				<input type="submit" name="apply" value="Apply" class="btn btn-default">
+			</form>
+
         
       </div>	
 
