@@ -1,6 +1,6 @@
--- create DATABASE `joblister`
+create DATABASE `joblister`;
 
-USE `joblister`
+USE `joblister`;
 
 CREATE TABLE `users` (
     `id` BIGINT(20) NOT NULL PRIMARY KEY AUTO_INCREMENT,
@@ -28,4 +28,12 @@ CREATE TABLE `comments` (
     `user_id` BIGINT NOT NULL,
     `message` TEXT NOT NULL,
     `created_at` DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE `appliedjobs` (
+    `id` BIGINT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    `user_id` VARCHAR(255) NOT NULL,
+    `post_id` BIGINT NOT NULL,
+    `status` VARCHAR(255) NOT NULL,
+    `applied_at` DATETIME DEFAULT CURRENT_TIMESTAMP
 );
