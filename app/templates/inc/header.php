@@ -16,23 +16,36 @@
                 <ul class="nav nav-pills float-right">
                 <?php
                     if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
+                         if($title=="Profile"){
+                            echo '<li class="nav-item"> Hello '.$_SESSION['username'].'</li>
+                        <li class="nav-item">
+                        <a class="nav-link active" href="logout.php">Logout<span class="sr-only">(current)</span></a>
+                        </li>'; 
+
+                        }
+                        else
+                        {
                         echo '<li class="nav-item">
-                        <a class="nav-link" href="#">Profile</a>
+                        <a class="nav-link" href="profile.php">Profile</a>
                         </li>
                         <li class="nav-item">
                         <a class="nav-link active" href="logout.php">Logout<span class="sr-only">(current)</span></a>
-                        </li>';                    
-                    } else {
+                        </li>'; }
+
+                    }                      
+                    else{
                         if($title=="Login"){
                             echo '<li class="nav-item">
                             <a class="nav-link active" href="register.php">Signup<span class="sr-only">(current)</span></a>
                             </li>';
-                        } else {
+                        } 
+                        else {
                             echo '<li class="nav-item">
                             <a class="nav-link active" href="login.php">Login<span class="sr-only">(current)</span></a>
                             </li>';
                         }
                     }
+                    
                 ?>
                 </ul>
                 </nav>

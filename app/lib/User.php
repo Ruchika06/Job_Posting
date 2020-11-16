@@ -37,8 +37,8 @@ class User{
       $this->db->bind(':username', $username);
 
       //Assing Row
-      $results = $this->db->resultSet();
-      return $results;
+      $result = $this->db->single();
+      return $result;
   }
 
   public function getPasswordHashByUsername($username){

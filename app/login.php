@@ -40,9 +40,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             if(password_verify($password, $hashed_password->password)){ 
                 session_start();       
                 // Store data in session variables
+                $userid=$user->getUserByUsername($username);
                 $_SESSION["loggedin"] = true;
                 $_SESSION["id"] = $id;
-                $_SESSION["username"] = $username;                   
+                $_SESSION["username"] = $username;   
+                $_SESSION["userid"]=$userid;                
                 // Redirect user to welcome page
                 header("location: index.php");
             } else{
