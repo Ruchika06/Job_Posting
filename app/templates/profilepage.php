@@ -23,6 +23,7 @@
                 	
 
                   $postsres = $post->getappliedPosts($_SESSION["userid"]);
+                  //print_r($postsres);
 
                   //If user applied to job then display that post information.
                   	foreach($postsres as $post)

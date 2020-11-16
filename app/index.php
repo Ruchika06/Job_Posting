@@ -9,5 +9,6 @@ $post = new Post;
 $template = new Template('templates/frontpage.php');
 $template->title = "Jobs";
 $template->posts = $post->getPosts();
+#echo "Hello";
 echo $template;
 ?>

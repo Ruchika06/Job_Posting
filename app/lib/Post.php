@@ -19,6 +19,35 @@ class Post{
     return $results;
   }
 
+  public function getappliedPosts($userid){
+    $this->db->query("SELECT title, description,status,applied_at FROM appliedjobs INNER JOIN posts ON appliedjobs.post_id=posts.id WHERE appliedjobs.user_id=:userid");
+    $this->db->bind(':userid',$userid);
+    $results = $this->db->resultSet();
+    return $results;
+  }
+  public function checkpost($userid,$postid)
+  {
+        $this->db->query("SELECT * FROM appliedjobs INNER JOIN posts WHERE appliedjobs.user_id=:userid AND appliedjobs.post_id=:postid" );
+    $this->db->bind(':userid',$userid);
+    $this->db->bind(':postid', $postid);
+    $results = $this->db->resultSet();
+    return $results;
+  }
+  public function applypost($user_id,$post_id)
+  {
+  $this->db->query("INSERT INTO appliedjobs (user_id, post_id, status)
+      VALUES(:userid, :postid,'Reviewing')");
+  $this->db->bind(':userid', $user_id);
+  $this->db->bind(':postid', $post_id);
+  if($this->db->execute()){
+        return true;
+      }
+        return false;
+  }      
+
+
+
+
   // Get posts By creator's username
   public function getByCreator($creator_username){
     $this->db->query("SELECT posts.*, users.username

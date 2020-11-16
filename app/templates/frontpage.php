@@ -15,7 +15,7 @@
                 <p><?php echo $post->username ?></p>
             </div>
             <div class="col-sm-2">
-                <a class="btn btn-default" href="#">View</a>
+                <a class="btn btn-default" href="postview.php?id=<?php echo $post->id ?>">View</a>
             </div>
         </div>
     <?php endforeach; ?>

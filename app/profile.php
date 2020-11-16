@@ -11,7 +11,7 @@ $post = new Post;
 $user = new User;
 $template = new Template('templates/profilepage.php');
 $template->title = "Profile";
-
+$template->post=$post;
 
 echo $template;
 ?>
