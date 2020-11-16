@@ -1,46 +1,28 @@
 <?php include 'inc/header.php'; ?>
-
+    <div class="jumbotron">
+    <p class="lead">Create a post today!</p>
+    <p><a class="btn btn-lg btn-success" href="postcreate.php" role="button">Create</a></p>
+    </div>
     <div class="container">
-
-      
-      <!-- All Job Posts that we applied to. -->
-
+      <!-- All Job Posts created by the user -->
       <div class="row">
         <div class="col-md-12">
           <div class="table-responsive">
-            <h2 class="text-center">Applied Jobs</h2>
+            <h2 class="text-center">Jobs Created</h2>
             <table class="table table-striped">
               <thead>
-                <th>Job Name</th>
-                <th>Job Description</th>
-                <th>Applied At</th>
-                <th>Status</th>
+                <th>Title</th>
+                <th>Date</th>
+                <th>Details</th>
               </thead>
               <tbody>
-                <?php
-                //Sql Query for showing all applied job posts. 
-               		
-                	
-
-                  $postsres = $post->getappliedPosts($_SESSION["userid"]);
-                  //print_r($postsres);
-
-                  //If user applied to job then display that post information.
-                  	foreach($postsres as $post)
-                    {                     
-                      
-                     ?>
+                <?php foreach($posts as $post) { ?>
                       <tr>
                         <td><?php echo $post->title; ?></td>
-                        <td><?php echo $post->description; ?></td>
-                        <td><?php echo $post->status; ?></td>
-                        <td><?php echo date("d-M-Y", strtotime($post->applied_at)); ?></td>                                              
+                        <td><?php echo date("d/m/y", strtotime($post->created_at)); ?></td>
+                        <td><a href="postview.php?id=<?php echo $post->id ?>">View</a></td>
                       </tr>
-                     <?php
-                    }
-                  
-                  
-                ?>
+                <?php } ?>
               </tbody>
             </table>
           </div>
