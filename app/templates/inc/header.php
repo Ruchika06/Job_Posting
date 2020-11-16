@@ -15,31 +15,35 @@
                 <nav>
                 <ul class="nav nav-pills float-right">
                 <?php
-                    if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
-                         if($title=="Profile"){
-                            echo '<li class="nav-item"> Hello '.$_SESSION['username'].'</li>
-                        <li class="nav-item">
-                        <a class="nav-link active" href="logout.php">Logout<span class="sr-only">(current)</span></a>
-                        </li>'; 
-
+                    if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
+                        // If logged in.
+                        if($title=="Profile") {
+                            // If profile page.
+                            echo '<li class="nav-item">
+                            <a class="nav-link" href="index.php">Home</a>
+                            </li>
+                            <li class="nav-item">
+                            <a class="nav-link active" href="logout.php">Logout<span class="sr-only">(current)</span></a>
+                            </li>';
+                        } else {
+                            // If home page, view post page or create post page.
+                            echo '<li class="nav-item">
+                            <a class="nav-link" href="profile.php">Profile</a>
+                            </li>
+                            <li class="nav-item">
+                            <a class="nav-link active" href="logout.php">Logout<span class="sr-only">(current)</span></a>
+                            </li>';
                         }
-                        else
-                        {
-                        echo '<li class="nav-item">
-                        <a class="nav-link" href="profile.php">Profile</a>
-                        </li>
-                        <li class="nav-item">
-                        <a class="nav-link active" href="logout.php">Logout<span class="sr-only">(current)</span></a>
-                        </li>'; }
-
                     }                      
                     else{
                         if($title=="Login"){
+                            // If login page.
                             echo '<li class="nav-item">
                             <a class="nav-link active" href="register.php">Signup<span class="sr-only">(current)</span></a>
                             </li>';
                         } 
                         else {
+                            // If signup page.
                             echo '<li class="nav-item">
                             <a class="nav-link active" href="login.php">Login<span class="sr-only">(current)</span></a>
                             </li>';
@@ -49,5 +53,5 @@
                 ?>
                 </ul>
                 </nav>
-                <h3 class="text-muted"><?php echo SITE_TITLE;?></h3>
+                <a href="index.php" style="text-decoration: none;"><h3 class="text-muted"><?php echo SITE_TITLE;?></h3></a>
             </div>
