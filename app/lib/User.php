@@ -13,7 +13,7 @@ class User{
     return $results;
   }
 
-  //Get post by id
+  //Get user by id
   public function getUser($id){
       $this->db->query("");
       $this->db->bind(':id', $id);
@@ -66,49 +66,4 @@ class User{
       }
         return false;
   }
-
-//   //Delete posts
-//   public function delete($id){
-//     //Insert Query
-//     $this->db->query("DELETE FROM posts WHERE id = $id");
-
-//     //Execute
-//     if($this->db->execute()){
-//       return true;
-//     }
-//       return false;
-// }
-
-// //Create posts
-// public function update($id, $data){
-//     //Insert Query
-//     $this->db->query("UPDATE posts
-//           SET
-//           category_id = :category_id,
-//           posts_title = :posts_title,
-//           company = :company,
-//           description = :description,
-//           location = :location,
-//           salary = :salary,
-//           contact_user = :contact_user,
-//           contact_email = :contact_email
-//           WHERE id= $id");
-
-//     //Bind Data
-//     $this->db->bind(':category_id', $data['category_id']);
-//     $this->db->bind(':posts_title', $data['posts_title']);
-//     $this->db->bind(':company', $data['company']);
-//     $this->db->bind(':description', $data['description']);
-//     $this->db->bind(':location', $data['location']);
-//     $this->db->bind(':salary', $data['salary']);
-//     $this->db->bind(':contact_user', $data['contact_user']);
-//     $this->db->bind(':contact_email', $data['contact_email']);
-
-//     //Execute
-//     if($this->db->execute()){
-//       return true;
-//     }
-//       return false;
-// }
-
 }
