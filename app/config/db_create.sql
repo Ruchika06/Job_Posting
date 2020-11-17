@@ -3,7 +3,7 @@ create DATABASE `joblister`;
 USE `joblister`;
 
 CREATE TABLE `users` (
-    `id` BIGINT(20) NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    `id` BIGINT NOT NULL PRIMARY KEY AUTO_INCREMENT,
     `email` VARCHAR(50) NOT NULL UNIQUE,
     `username` VARCHAR(50) NOT NULL UNIQUE,
     `password` VARCHAR(255) NOT NULL,
@@ -14,7 +14,7 @@ CREATE TABLE `users` (
 
 CREATE TABLE `posts` (
     `id` BIGINT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    `user_id` VARCHAR(255) NOT NULL,
+    `user_id` BIGINT NOT NULL,
     `title` VARCHAR(255) NOT NULL,
     `description` TEXT NOT NULL,
     `contact` VARCHAR(50),
@@ -32,7 +32,7 @@ CREATE TABLE `comments` (
 
 CREATE TABLE `appliedjobs` (
     `id` BIGINT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    `user_id` VARCHAR(255) NOT NULL,
+    `user_id` BIGINT NOT NULL,
     `post_id` BIGINT NOT NULL,
     `status` VARCHAR(255) NOT NULL,
     `applied_at` DATETIME DEFAULT CURRENT_TIMESTAMP
