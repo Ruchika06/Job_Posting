@@ -33,45 +33,48 @@ class Post{
   }
 
 
-  public function checkpost($userid,$postid)
+  public function checkIfApplied($userid,$postid)
   {
-        $this->db->query("SELECT * FROM appliedjobs INNER JOIN posts WHERE appliedjobs.user_id=:userid AND appliedjobs.post_id=:postid" );
+    $this->db->query("SELECT * FROM appliedjobs WHERE user_id=:userid AND post_id=:postid");
     $this->db->bind(':userid',$userid);
     $this->db->bind(':postid', $postid);
     $results = $this->db->resultSet();
     return $results;
   }
 
-  public function applypost($user_id,$post_id)
+  public function applyForPost($user_id,$post_id)
   {
-  $this->db->query("INSERT INTO appliedjobs (user_id, post_id, status)
-      VALUES(:userid, :postid,'Reviewing')");
-  $this->db->bind(':userid', $user_id);
-  $this->db->bind(':postid', $post_id);
-  if($this->db->execute()){
-        return true;
+      $this->db->query("INSERT INTO appliedjobs (user_id, post_id, status) 
+      VALUES(:userid, :postid,'Applied')");
+      $this->db->bind(':userid', $user_id);
+      $this->db->bind(':postid', $post_id);
+      if($this->db->execute()){
+          return true;
       }
-        return false;
+      return false;
   }      
 
   // Search for posts having similar creator's username
   public function searchPostsByCreator($creator_username){
-    $this->db->query("SELECT posts.*, users.username
-                FROM posts
-                INNER JOIN users
-                ON posts.user_id = users.id
-                WHERE users.username LIKE '%:creator_username%'
-                ORDER BY created_at DESC
-                ");
-    $this->db->bind(':creator_username',$creator_username);
-    
-    $results = $this->db->resultSet();
-    return $results;
+      $this->db->query("SELECT posts.*, users.username
+                  FROM posts
+                  INNER JOIN users
+                  ON posts.user_id = users.id
+                  WHERE users.username LIKE '%:creator_username%'
+                  ORDER BY created_at DESC
+                  ");
+      $this->db->bind(':creator_username',$creator_username);
+      
+      $results = $this->db->resultSet();
+      return $results;
   }
 
   //Get post by id
   public function getPost($id){
-      $this->db->query("SELECT * FROM posts WHERE id = :id");
+      $this->db->query("SELECT posts.*,users.username as creator
+      FROM posts INNER JOIN users
+      ON posts.user_id = users.id
+      WHERE posts.id = :id");
       $this->db->bind(':id', $id);
 
       //Assing Row

@@ -13,7 +13,7 @@
                 <span class="help-block"><?php echo $desc_err; ?></span>
             </div>
             <div class="form-group <?php echo (!empty($contact_err)) ? 'has-error' : ''; ?>">
-                <label>Contact (e-mail/phone)</label>
+                <label>Contact(E-mail)</label>
                 <input type="text" name="contact" class="form-control" value="<?php echo $contact; ?>">
                 <span class="help-block"><?php echo $contact_err; ?></span>
             </div>
