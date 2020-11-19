@@ -55,15 +55,27 @@ class Post{
   }      
 
   // Search for posts having similar creator's username
-  public function searchPostsByCreator($creator_username){
+  public function searchPosts($search){
+      
+      $datesearch = $search;
+      preg_match('/(\d)*\/(\d)*/', $datesearch, $matches);
+      if($matches) {
+        $datesearch = explode("/",$datesearch);
+        $datesearch = $datesearch[1]."-".$datesearch[0];
+      }
+
+      $search = '%'.$search.'%';
+      $datesearch = '%'.$datesearch.'%';
+
       $this->db->query("SELECT posts.*, users.username
                   FROM posts
                   INNER JOIN users
                   ON posts.user_id = users.id
-                  WHERE users.username LIKE '%:creator_username%'
+                  WHERE users.username LIKE :search OR posts.created_at LIKE :datesearch OR posts.title LIKE :search
                   ORDER BY created_at DESC
                   ");
-      $this->db->bind(':creator_username',$creator_username);
+      $this->db->bind(':search',$search);
+      $this->db->bind(':datesearch',$datesearch);
       
       $results = $this->db->resultSet();
       return $results;

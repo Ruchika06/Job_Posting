@@ -5,7 +5,20 @@
 <p><a class="btn btn-lg btn-success" href="#" role="button">Subscribe</a></p>
 </div>
 
-<div class="container">
+<div class="marketing">
+  <div class="container">
+    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" class="row" method="post">
+      <div class="col-md-10">
+        <input type="text" class="form-control" name="search" value="<?php echo $search; ?>" placeholder="Search for jobs...">
+        <span class="help-block"><?php echo $search_err; ?></span>
+      </div>
+      <div class="col-md-2"> 
+        <input type="submit" class="btn btn-primary" value="Search">
+      </div>
+    </form>
+  </div>
+  </div>
+
   <!-- All Job Posts that are available -->
   <div class="row">
     <div class="col-md-12">
