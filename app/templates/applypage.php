@@ -28,4 +28,15 @@
 		</div>
       </div>	
 </div>
+<!-- Comment box section to post comment -->
+<div>
+<form action="postview.php" method="post">
+<div>
+<textarea name="comments" id="comments" style="font-family:sans-serif;font-size:1.2em;" placeholder="Post your comments here...">
+</textarea>
+</div>
+<input type="submit" value="Submit">
+</form>
+</div>
+
 <?php include 'inc/footer.php'?>
