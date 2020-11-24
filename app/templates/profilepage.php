@@ -5,6 +5,11 @@
 <p><a class="btn btn-lg btn-success" href="postcreate.php" role="button">Create</a></p>
 </div>
 
+<div class="jumbotron">
+<p class="lead">Want to Change Your Password</p>
+<p><a class="btn btn-lg btn-success" href="updatepassword.php" role="button">Go to Update Password</a></p>
+</div>
+
 <div class="container">
   <!-- All Job Posts created by the user -->
   <div class="row">
