@@ -8,6 +8,9 @@
                 <input type="text" name="email" class="form-control" value="<?php echo $email; ?>">
                 <span class="help-block"><?php echo $email_err; ?></span>
             </div> 
+            <div class = msg>
+                <span class="help-block"><?php echo $msg; ?></span>
+            </div>
             <div class="form-group">
                 <input type="submit" class="btn btn-primary" value="Send Login Link">
             </div>
