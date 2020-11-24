@@ -49,7 +49,15 @@ class User{
       $row = $this->db->single();
       return $row;
   }
+  //Get user all details by username
+  public function getUserAllByUsername($username){
+    $this->db->query("SELECT * FROM users WHERE username = :username");
+    $this->db->bind(':username', $username);
 
+    //Assing Row
+    $result = $this->db->single();
+    return $result;
+}
   //Create user
   public function createUser($data){
       //Insert Query
