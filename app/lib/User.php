@@ -83,4 +83,21 @@ class User{
       }
         return false;
   }
+  
+  
+    //Update Password of user
+  public function updateUserPassword($data){
+      //Insert Query
+      $this->db->query("UPDATE users SET password = :password WHERE username = :username");
+
+      //Bind Data
+      $this->db->bind(':username', $data['username']);
+      $this->db->bind(':password', $data['password']);
+
+      //Execute
+      if($this->db->execute()){
+        return true;
+      }
+        return false;
+  }
 }
