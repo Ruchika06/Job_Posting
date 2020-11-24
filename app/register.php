@@ -36,7 +36,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     if(empty($username)){
         $username_err = "Please enter a username.";
     } else{
-        if(sizeof($user->getUserByUsername($username))>=1){
+        if($user->getUserByUsername($username)){
             $username_err = "This username is already taken.";
         }
     }
