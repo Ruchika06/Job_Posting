@@ -13,6 +13,8 @@ if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
 
 $user = new User;
 
+$file = 'updatepassword.php';
+$msg = "";
 $email = $username = "";
 $username_err = $email_err = "";
 
@@ -53,10 +55,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 		    -----------------------------------------------
 		    Url : $url;
 		    email Details is : $to;
-		    Here is your password  : $pass;
+		    Here is your password code : $pass;
 		    Sincerely,
 		    Coding Cyber";
-            $from = "sahilgarg2006.sg@gmail.com";
+            $from = "jobportal@iitmandi.ac.in";
             $subject = "JobPortal Password recovered";
             $headers1 = "From: $from\n";
             $headers1 .= "Content-type: text/html;charset=iso-8859-1\r\n";
@@ -67,18 +69,18 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         }
         else {
             if ($_POST ['email'] != "") {
-                echo '<span style="color: #ff0000;"> Not found your email in our database<br></span>';
+                $msg = '<span style="color: #ff0000;"> Not found your email in our database<br></span>';
             }
         }
         //If the message is sent successfully, display success message otherwise display an error message.
         if($sentmail==1)
         {
-            echo "<span style='color: #ff0000;'> Your Password Has Been Sent To Your Email Address.</span>";
+            $msg = "<span style='color: #ff0000;'> Your Password Has Been Sent To Your Email Address.</span><br><a href=$file> Click here </a><br>";
         }
         else
         {
             if($_POST['email']!="")
-                echo "<span style='color: #ff0000;'> Cannot send password to your e-mail address.Problem with sending mail...</span>";
+                $msg = "<span style='color: #ff0000;'> Cannot send password to your e-mail address.Problem with sending mail...</span>";
         }
     }
 }
@@ -88,6 +90,7 @@ $template = new Template('templates/forgotpasspage.php');
 $template->title = "Forgot Password";
 $template->email = $email;
 $template->email_err = $email_err;
+$template->msg = $msg;
 echo $template;
 
 ?>
