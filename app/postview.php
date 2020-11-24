@@ -4,6 +4,14 @@
 // Initialize the session
 session_start();
 
+// Check if user is logged in
+// If not direct him to login page
+//Makes the job inaccessible to outsiders 
+if(empty($_SESSION['userid'])) {
+	header("Location: login.php");
+	exit();
+}
+
 $post = new Post;
 
 $post_obj = "";
