@@ -11,7 +11,7 @@
             <div class="form-group">
                 <input type="submit" class="btn btn-primary" value="Send Login Link">
             </div>
-            <p>Back to Login<a href="login.php">Click here</a>.</p>
+            <p><a href="login.php">Back to Login</a>.</p>
         </form>
 </div>    
 
