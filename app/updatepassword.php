@@ -37,7 +37,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         $hashed_password = $user->getPasswordHashByUsername($username);
         
         if($hashed_password){                    
-            if(password_verify($password, $hashed_password->password) || strcmp($password, $hashed_password->password)){ 
+            if(password_verify($password, $hashed_password->password) || ($password == $hashed_password->password)){ 
                 $data = array();
                 $data['username'] = $username;
                 $data['password'] = password_hash($newpassword, PASSWORD_DEFAULT);
