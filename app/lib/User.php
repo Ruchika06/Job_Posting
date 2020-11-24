@@ -58,6 +58,15 @@ class User{
     $result = $this->db->single();
     return $result;
 }
+  //Get user all details by emails
+  public function getUserAllByEmail($email){
+    $this->db->query("SELECT * FROM users WHERE email = :email");
+    $this->db->bind(':email', $email);
+
+    //Assing Row
+    $result = $this->db->single();
+    return $result;
+}
   //Create user
   public function createUser($data){
       //Insert Query
