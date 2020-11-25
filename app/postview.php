@@ -39,7 +39,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 	}
 }
 
-$template = new Template('templates/applypage.php');
+$template = new Template('templates/postviewpage.php');
 $template->title = "Apply";
 $template->apply_status = $apply_status;
 $template->post = $post->getPost($_SESSION['postid']);
