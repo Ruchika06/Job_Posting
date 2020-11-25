@@ -5,6 +5,12 @@
 // Initialize the session
 session_start();
 
+// Check if logged in
+if(empty($_SESSION['userid'])) {
+	header("Location: login.php");
+	exit();
+}
+
 $search=$search_err="";
 $results="";
 
