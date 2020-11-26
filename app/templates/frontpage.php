@@ -17,7 +17,7 @@
       </div>
     </form>
   </div>
-  </div>
+</div>
 
   <!-- All Job Posts that are available -->
   <div class="row">
@@ -44,6 +44,5 @@
       </div>
     </div>
   </div>
-</div>
 
 <?php include 'inc/footer.php'?>

@@ -13,6 +13,7 @@ if(empty($_SESSION['userid'])) {
 }
 
 $post = new Post;
+$comment = new Comment;
 
 $post_obj = "";
 if($_SERVER["REQUEST_METHOD"] == "GET") {
@@ -22,27 +23,26 @@ if($_SERVER["REQUEST_METHOD"] == "GET") {
 	}
 }
 
-$apply_status = "";
+$comment_err = "";
+
 if($_SERVER["REQUEST_METHOD"] == "POST") {
 	if(!isset($_SESSION['userid'])) {
-		$apply_status = "You must be logged in to apply."; 
+		$comment_err = "You must be logged in to comment."; 
 	} else {
-        if(sizeof($post->checkIfApplied($_SESSION['userid'],$_SESSION['postid']))>=1) {
-			$apply_status = "You have already applied for this post.";
-		} else {
-			if($post->applyForPost($_SESSION['userid'],$_SESSION['postid'])) {
-				$apply_status = "OK";
+			if($comment->createComment($_SESSION['userid'],$_SESSION['postid'],$_POST['comment'])) {
+				// Reload page
+				header("location: postview.php?id=".$_SESSION['postid']);
 			} else {
-				$apply_status = "Some error ocurred.";
+				$comment_err = "Some error ocurred.";
 			}
-		}
 	}
 }
 
 $template = new Template('templates/postviewpage.php');
-$template->title = "Apply";
-$template->apply_status = $apply_status;
+$template->title = "View";
 $template->post = $post->getPost($_SESSION['postid']);
+$template->comment_err = $comment_err;
+$template->comments = $comment->getCommentsByPost($_SESSION['postid']);
 $template->mail_subj = "Application: ".$template->post->title;
 $template->mail_body = "Greetings,%0a<INSERT MSG HERE>%0aRegards,%0a".$_SESSION['username']."%0a";
 echo $template;
