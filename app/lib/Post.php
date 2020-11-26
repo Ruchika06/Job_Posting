@@ -12,6 +12,7 @@ class Post{
                 FROM posts
                 INNER JOIN users
                 ON posts.user_id = users.id
+                WHERE approved = 1
                 ORDER BY created_at DESC
                 ");
     

@@ -11,6 +11,9 @@ if(empty($_SESSION['userid'])) {
 	exit();
 }
 
+// Make sure no postid is stored in session
+unset($_SESSION['postid']);
+
 $search=$search_err="";
 $results="";
 
