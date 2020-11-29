@@ -11,6 +11,7 @@ if(empty($_SESSION['userid'])) {
 }
 
 $post = new Post;
+$user = new User;
 $post_title = $desc = $contact = "";
 $post_title_err = $desc_err = $contact_err = "";
 
@@ -47,7 +48,24 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         
         // Attempt to execute the prepared statement
         if($post->createPost($data)){
+            $to = SELF_MAIL;
+            $body  =  $desc;
+            $mail_subj = "Application: ".$post_title;
+            $mail_body = "Greetings,".PHP_EOL."<INSERT MSG HERE>".PHP_EOL."Regards,".PHP_EOL."Your name";
+            $body .= PHP_EOL."<p><a href='mailto:".$contact."?subject=".$mail_subj."&body=".$mail_body."'>Click here</a> to send an application via mail.</p>";
+            $from = "jobportal@iitmandi.ac.in";
+            $subject = "Job Lister: ".$post_title;
+            $subs = $user->getSubscribers();
+            $headers = "BCC: ";
+            foreach($subs as $sub) {
+                $headers.=$sub->email.",";
+            }
+            $headers.=SELF_MAIL.";".PHP_EOL;
+            $headers .= "MIME-Version: 1.0".PHP_EOL;
+            $headers .= "Content-Type: text/html; charset=ISO-8859-1".PHP_EOL;
+            $sentmail = mail ( $to, $subject, $body, $headers);
             header("location: profile.php");
+            exit();
         } else{
             echo "Something went wrong. Please try again later.";
         }

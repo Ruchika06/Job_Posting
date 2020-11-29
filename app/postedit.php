@@ -61,7 +61,16 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         
         // Attempt to execute the prepared statement
         if($post->updatePost($_SESSION['postid'],$data)){
+            $to = SELF_MAIL;
+            $subject = "Edit Approval: ".$post_title;
+            $body = DOMAIN."postview.php?=".$_SESSION['postid'];
+            $headers = "";
+            $headers .= "MIME-Version: 1.0".PHP_EOL;
+            $headers .= "Content-Type: text/html; charset=ISO-8859-1".PHP_EOL;
+            $sentmail = mail ( $to, $subject, $body, $headers);
+
             header("location: profile.php");
+            exit();
         } else{
             echo "Something went wrong. Please try again later.";
         }

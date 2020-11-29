@@ -29,43 +29,25 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         $email_err = "Please enter an E-mail address.";
     } else{
         $sentmail=0;
-        $result = $user->getUserAllByEmail($email);
-        $result = (array)$result;
-        // foreach($result as $val){
-        //     echo $val;
-        // };
-        // $email_ = array_column($result, 'email');
-        // //echo $email_;
-        // foreach($email_ as $val){
-        //     echo $val;
-        // };
-        //echo sizeof($result);
-        if(sizeof($result)>1){
-            //$rows=mysqli_fetch_array($result);
-            $pass  =  $result['password'];//FETCHING PASS
-            //echo $pass;
-            //echo "your pass is ::".($pass)."";
-            $to = $result['email'];
-            //echo "your email is ::".$email;
-            //Details for send
-            //ing E-mail
-            $from = "Job Portal";
-            $url = "Job Portal Website";
-            $body  =  "Your Password Recovery
-		    -----------------------------------------------
-		    Url : $url;
-		    email Details is : $to;
-		    Here is your password code : $pass;
-		    Sincerely,
-		    Coding Cyber";
+        $result = $user->getPasswordHashByEmail($email);
+        $url = DOMAIN."updatepassword.php";
+        if($result){
+            $code  =  $result->password;
+            $to = $email;
+            $body  =  
+"
+Password Recovery
+-----------------
+Here is your secret code : $code
+Use it here: $url
+
+Sincerely,
+Admin
+";
             $from = "jobportal@iitmandi.ac.in";
-            $subject = "JobPortal Password recovered";
-            $headers1 = "From: $from\n";
-            $headers1 .= "Content-type: text/html;charset=iso-8859-1\r\n";
-            $headers1 .= "X-Priority: 1\r\n";
-            $headers1 .= "X-MSMail-Priority: High\r\n";
-            $headers1 .= "X-Mailer: Just My Server\r\n";
-            $sentmail = mail ( $to, $subject, $body, $headers1);
+            $subject = "Job Lister - IIT Mandi Password Recovery";
+            $headers = "From: $from\n";
+            $sentmail = mail ( $to, $subject, $body, $headers);
         }
         else {
             if ($_POST ['email'] != "") {
@@ -75,7 +57,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         //If the message is sent successfully, display success message otherwise display an error message.
         if($sentmail==1)
         {
-            $msg = "<span style='color: #ff0000;'> Your Password Has Been Sent To Your Email Address.</span><br><a href=$file> Click here </a><br>";
+            $msg = "<span>Your Password Hash Has Been Sent To Your Email Address.</span>";
         }
         else
         {

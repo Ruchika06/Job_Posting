@@ -14,6 +14,20 @@ class Post{
                 ON posts.user_id = users.id
                 WHERE approved = 1
                 ORDER BY created_at DESC
+                LIMIT 5
+                ");
+    
+    $results = $this->db->resultSet();
+    return $results;
+  }
+
+  public function getPendingPosts(){
+    $this->db->query("SELECT posts.*, users.username
+                FROM posts
+                INNER JOIN users
+                ON posts.user_id = users.id
+                WHERE approved = 0
+                ORDER BY created_at DESC
                 ");
     
     $results = $this->db->resultSet();
@@ -25,6 +39,7 @@ class Post{
     $this->db->query("SELECT *
                 FROM posts
                 WHERE user_id = :user_id
+                AND approved = 1
                 ORDER BY created_at DESC
                 ");
     $this->db->bind(':user_id',$user_id);
@@ -72,7 +87,7 @@ class Post{
                   FROM posts
                   INNER JOIN users
                   ON posts.user_id = users.id
-                  WHERE users.username LIKE :search OR posts.created_at LIKE :datesearch OR posts.title LIKE :search
+                  WHERE posts.approved = 1 AND (users.username LIKE :search OR posts.created_at LIKE :datesearch OR posts.title LIKE :search)
                   ORDER BY created_at DESC
                   ");
       $this->db->bind(':search',$search);
@@ -150,5 +165,45 @@ class Post{
       }
         return false;
   }
+
+  public function isApproved($id) {
+      $this->db->query("SELECT approved from posts where id = :id");
+
+      //Bind Data
+      $this->db->bind(':id', $id);
+      
+      $result = $this->db->single();
+
+      return $result->approved;
+  }
+
+  public function approvePost($id) {
+      $this->db->query("UPDATE posts SET approved = 1 WHERE id= :id");
+
+      //Bind Data
+      $this->db->bind(':id', $id);
+
+      //Execute
+      if($this->db->execute()){
+        return true;
+      }
+      return false;
+  }
+
+  public function hidePost($id) {
+      $this->db->query("UPDATE posts SET approved = 2 WHERE id= :id");
+
+      //Bind Data
+      $this->db->bind(':id', $id);
+
+      //Execute
+      if($this->db->execute()){
+        return true;
+      }
+      return false;
+  }
+
+  
+
 
 }

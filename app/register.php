@@ -27,14 +27,14 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     if(empty($email)){
         $email_err = "Please enter an E-mail address.";
     } else{
-        $email_exp = '/^[A-Za-z0-9._%-]+@[s-s]{1}+[t-t]{1}+[u-u]{1}+[d-d]{1}+[e-e]{1}+[n-n]{1}+[t-t]{1}+[s-s]{1}+\.[i-i]{1}+[i-i]{1}+[t-t]{1}+[m-m]{1}+[a-a]{1}+[n-n]{1}+[d-d]{1}+[i-i]{1}+\.[a-a]{1}+[c-c]{1}+\.[i-i]{1}+[n-n]{1}$/';
+        // $email_exp = '/^[A-Za-z0-9._%-]+@[s-s]{1}+[t-t]{1}+[u-u]{1}+[d-d]{1}+[e-e]{1}+[n-n]{1}+[t-t]{1}+[s-s]{1}+\.[i-i]{1}+[i-i]{1}+[t-t]{1}+[m-m]{1}+[a-a]{1}+[n-n]{1}+[d-d]{1}+[i-i]{1}+\.[a-a]{1}+[c-c]{1}+\.[i-i]{1}+[n-n]{1}$/';
         if(sizeof($user->getUserByEmail($email))>=1){
             $email_err = "This E-mail is already registered.";
         }
         // Checks if the email-id is of the institute or not
-        elseif(!preg_match($email_exp, $email)){
-            $email_err = "This Email is not a valid email of institute.";
-        }
+        // elseif(!preg_match($email_exp, $email)){
+        //     $email_err = "This Email is not a valid email of institute.";
+        // }
     }
 
     // Validate username

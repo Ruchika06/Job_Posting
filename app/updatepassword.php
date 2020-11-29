@@ -23,7 +23,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     
     // Check if password is empty
     if(empty($password)){
-        $password_err = "Please enter your password.";
+        $password_err = "Please enter your password/code.";
     }
 
     // Check if password is empty

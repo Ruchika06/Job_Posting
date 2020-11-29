@@ -8,7 +8,7 @@ class Comment{
 
   // Get comments by a particular post_id
   public function getCommentsByPost($post_id){
-    $this->db->query("SELECT comments.message, users.username, comments.created_at
+    $this->db->query("SELECT comments.id, comments.message, users.username, comments.created_at
                 FROM comments
                 INNER JOIN users
                 ON comments.user_id = users.id
@@ -41,6 +41,17 @@ class Comment{
     $this->db->bind(':post_id', $post_id);
     $this->db->bind(':user_id', $user_id);
     $this->db->bind(':message', $message);
+
+    if($this->db->execute()){
+      return true;
+    }
+    return false;
+  }
+
+  public function deleteComment($id){
+    $this->db->query("DELETE FROM comments WHERE id = :id");
+
+    $this->db->bind(':id', $id);
 
     if($this->db->execute()){
       return true;
