@@ -63,7 +63,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         if($post->updatePost($_SESSION['postid'],$data)){
             $to = SELF_MAIL;
             $subject = "Edit Approval: ".$post_title;
-            $body = DOMAIN."postview.php?=".$_SESSION['postid'];
+            $body = DOMAIN."profile.php;
             $headers = "";
             $headers .= "MIME-Version: 1.0".PHP_EOL;
             $headers .= "Content-Type: text/html; charset=ISO-8859-1".PHP_EOL;
