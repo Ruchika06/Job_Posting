@@ -30,10 +30,3 @@ CREATE TABLE `comments` (
     `created_at` DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 
-CREATE TABLE `appliedjobs` (
-    `id` BIGINT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    `user_id` BIGINT NOT NULL,
-    `post_id` BIGINT NOT NULL,
-    `status` VARCHAR(255) NOT NULL,
-    `applied_at` DATETIME DEFAULT CURRENT_TIMESTAMP
-);
